@@ -25,7 +25,7 @@ export interface Props {
   isLoading?: boolean
   isError?: boolean
   openModal?: boolean
-  handleCloseModal?: boolean
+  handleCloseModal?: any
   handleOpenCommentsModal?: any
   style?: {}
   postId?: number
@@ -33,8 +33,8 @@ export interface Props {
 }
 
 export interface SinglePost {
-  userId: number 
-  title: string
-  body: string
-  id: number
+  userId?: number
+  title?: string
+  body?: string
+  id?: number
 }

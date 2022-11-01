@@ -10,7 +10,7 @@ const Home = ({ text, posts, users, comments, isLoading, isError }: Props) => {
     const [openModal, setOpenModal] = useState(false);
     const [postId, setPostId] = useState<number>();
 
-    const handleCloseModal: any = () => setOpenModal(false);
+    const handleCloseModal = () => setOpenModal(false);
 
     const handleOpenCommentsModal = (postId: number) => {
         setOpenModal(true);

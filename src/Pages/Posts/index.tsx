@@ -12,8 +12,6 @@ const Posts = ({ posts, users, comments, isLoading, isError, openModal, handleCl
     const searchInputEl = useRef<HTMLInputElement>(null!);
 
     const [searchedPost, setsearchedArticle] = useState<string>("");
-    console.log(searchedPost);
-
 
     const handleSearch = () => {
         setsearchedArticle(searchInputEl.current.value)

@@ -1,8 +1,9 @@
 import { Box, Modal } from '@mui/material';
+import { Props } from '../../Interfaces';
 
 import styles from "./index.module.scss"
 
-const CommentsModal = ({ handleCloseModal, openModal, style, comments, postId }: any) => {
+const CommentsModal = ({ handleCloseModal, openModal, style, comments, postId }: Props) => {
 
     return (
         <Modal

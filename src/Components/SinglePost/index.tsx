@@ -6,17 +6,17 @@ import { Card, CardContent, Typography } from '@mui/material';
 import styles from "./index.module.scss"
 import ErrorHandling from "../../Pages/Error";
 import CircularIndeterminate from '../../Pages/Loader';
-import { Post, User } from "../../Interfaces";
+import { Post, Props, SinglePost, User } from "../../Interfaces";
 import CommentsModal from "../../Pages/Modal";
 import { STYLE } from "../../constants";
 
-const SinglePost = ({ text, posts, users, comments, isLoading, isError }: any) => {
+const SinglePost = ({ text, posts, users, comments, isLoading, isError }: Props) => {
     const { id } = useParams();
 
     const [openModal, setOpenModal] = useState(false);
     const [postId, setPostId] = useState<any>();
 
-    const singlePost = posts?.find((post: Post) => post.id === Number(id))
+    const singlePost: any = posts?.find((post: Post) => post.id === Number(id))
 
     const handleCloseModal = () => setOpenModal(false);
 
