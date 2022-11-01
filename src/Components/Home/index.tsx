@@ -5,7 +5,15 @@ import styles from "./index.module.scss";
 import { STYLE } from "../../constants";
 import { Props } from "../../Interfaces";
 
-const Home = ({ text, posts, users, comments, isLoading, isError }: Props) => {
+const Home = (props: Props) => {
+    const {
+        text,
+        posts,
+        users,
+        comments,
+        isLoading,
+        isError
+    } = props;
 
     const [openModal, setOpenModal] = useState(false);
     const [postId, setPostId] = useState<number>();
@@ -34,6 +42,6 @@ const Home = ({ text, posts, users, comments, isLoading, isError }: Props) => {
             />
         </div>
     )
-}
+};
 
-export default Home
+export default Home;

@@ -3,10 +3,18 @@ import { Props } from '../../Interfaces';
 
 import styles from "./index.module.scss"
 
-const CommentsModal = ({ handleCloseModal, openModal, style, comments, postId }: Props) => {
+const CommentsModal = (props: Props) => {
+    const {
+        handleCloseModal,
+        openModal,
+        style,
+        comments,
+        postId
+    } = props;
 
     return (
         <Modal
+            // @ts-ignore
             open={openModal}
             onClose={handleCloseModal}
             aria-labelledby="modal-modal-title"

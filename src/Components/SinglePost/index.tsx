@@ -3,31 +3,44 @@ import { useParams } from "react-router-dom";
 
 import { Card, CardContent, Typography } from '@mui/material';
 
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 import ErrorHandling from "../../Pages/Error";
 import CircularIndeterminate from '../../Pages/Loader';
-import { Post, Props, SinglePost, User } from "../../Interfaces";
+import { ISinglePost, Post, Props, User } from "../../Interfaces";
 import CommentsModal from "../../Pages/Modal";
 import { STYLE } from "../../constants";
 
-const SinglePost = ({ text, posts, users, comments, isLoading, isError }: Props) => {
+const SinglePost = (props: Props) => {
+    const {
+        text,
+        posts,
+        users,
+        isError,
+        comments,
+        isLoading,
+    } = props;
+
     const { id } = useParams();
 
     const [openModal, setOpenModal] = useState(false);
-    const [postId, setPostId] = useState<any>();
+    const [postId, setPostId] = useState<number>();
+    const [postsData, setPostsData] = useState<ISinglePost>();
 
-    const singlePost: any = posts?.find((post: Post) => post.id === Number(id))
+    if (posts?.length) {
+        posts?.find((post: Post) => post.id === Number(id));
+    };
 
     const handleCloseModal = () => setOpenModal(false);
 
-    const handleOpenCommentsModal = (postId: number) => {
+    const handleOpenCommentsModal = (postId: number | undefined) => {
         setOpenModal(true);
         setPostId(postId);
     };
 
     useEffect(() => {
         console.log(text);
-    }, [])
+        setPostsData(posts?.find((post: Post) => post.id === Number(id)));
+    }, [posts]);
 
     return (
         <div className={styles.card_container}>
@@ -36,16 +49,16 @@ const SinglePost = ({ text, posts, users, comments, isLoading, isError }: Props)
                 !posts || isError ?
                     <ErrorHandling /> :
                     <Card sx={{ maxWidth: 540 }} className={styles.card}>
-                        {users?.map((user: User) => user.id === singlePost.userId && <h1 key={user?.id}><span>Posted by</span>{user.name}</h1>)}
+                        {users?.map((user: User) => user.id === postsData?.userId && <h1 key={user?.id}><span>Posted by</span>{user.name}</h1>)}
                         <CardContent className={styles.card_content} >
                             <Typography variant="body2" color="text.secondary" className={styles.title}>
-                                {singlePost?.title.charAt(0).toUpperCase() + singlePost?.title.slice(1)}
+                                {postsData?.title.replace(postsData?.title[0], postsData?.title[0].toUpperCase())}
                             </Typography>
                             <Typography variant="body2" color="text.secondary" className={styles.body}>
-                                {singlePost?.body.charAt(0).toUpperCase() + singlePost?.title.slice(1)}
+                                {postsData?.body.replace(postsData?.body[0], postsData?.body[0].toUpperCase())}
                             </Typography>
                         </CardContent>
-                        <p className={styles.comments} onClick={() => handleOpenCommentsModal(singlePost.id)}>Comments</p>
+                        <p className={styles.comments} onClick={() => handleOpenCommentsModal(postsData?.id)}>Comments</p>
                     </Card>
             }
             <CommentsModal

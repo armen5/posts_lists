@@ -7,24 +7,41 @@ import { Post, Props, User } from '../../Interfaces';
 import CommentsModal from '../Modal';
 import { useEffect, useRef, useState } from 'react';
 
-const Posts = ({ posts, users, comments, isLoading, isError, openModal, handleCloseModal, handleOpenCommentsModal, style, postId, text }: Props) => {
+const Posts = (props: Props) => {
+    const {
+        posts,
+        users,
+        comments,
+        isLoading,
+        isError,
+        openModal,
+        handleCloseModal,
+        handleOpenCommentsModal,
+        style,
+        postId,
+        text
+    } = props;
 
     const searchInputEl = useRef<HTMLInputElement>(null!);
 
-    const [searchedPost, setsearchedArticle] = useState<string>("");
+    const [searchedPost, setsearchedPost] = useState<string>("");
+    const [user, setUser] = useState<User>();
 
     const handleSearch = () => {
-        setsearchedArticle(searchInputEl.current.value)
+        setsearchedPost(searchInputEl.current.value);
     };
 
     const filterSearchedPosts = (post: Post) => {
-        const searchedUsername: any = users?.find((user: User) => user.name.toLowerCase().includes(searchedPost.toLocaleLowerCase()))
-        return searchedPost.length >= 3 ? post?.userId == searchedUsername?.id : true;
+        return searchedPost.length >= 3 ? post.userId === user?.id : true;
     };
 
     useEffect(() => {
+        setUser(users?.find((user: User) => user.name.toLowerCase().includes(searchedPost.toLocaleLowerCase())));
+    }, [searchedPost]);
+
+    useEffect(() => {
         console.log(text);
-    }, [window.location.href])
+    }, [window.location.href]);
 
     return (
         <>
@@ -39,7 +56,6 @@ const Posts = ({ posts, users, comments, isLoading, isError, openModal, handleCl
                     Search
                 </button>
             </div>
-            {posts?.length === 0 && <h1>User's Name Not found</h1>}
             <div className={styles.card_container}>
                 {!posts || isLoading ?
                     <CircularIndeterminate /> :
@@ -55,10 +71,10 @@ const Posts = ({ posts, users, comments, isLoading, isError, openModal, handleCl
                                             <a href={`/single-post/${post.id}`} className={styles.link}>
                                                 <CardContent className={styles.card_content} >
                                                     <Typography variant="body2" color="text.secondary" className={styles.title}>
-                                                        {post?.title?.charAt(0).toUpperCase() + post?.title?.slice(1)}
+                                                        {post?.title.replace(post?.title[0], post?.title[0].toUpperCase())}
                                                     </Typography>
                                                     <Typography variant="body2" color="text.secondary" className={styles.body}>
-                                                        {post?.body?.charAt(0).toUpperCase() + post?.title?.slice(1)}
+                                                        {post?.title.replace(post?.title[0], post?.title[0].toUpperCase())}
                                                     </Typography>
                                                 </CardContent>
                                             </a>
