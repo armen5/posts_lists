@@ -1,0 +1,90 @@
+.search_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+
+    input {
+        width: 40%;
+        height: 40px;
+        padding-left: 20px;
+        font-size: 14px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border: 1px solid grey;
+        border-right: none;
+
+        &:focus {
+            outline: none
+        }
+    }
+
+    button {
+        background-color: #51ABF8;
+        border: none;
+        width: 8%;
+        color: white;
+        font-weight: bold;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        cursor: pointer;
+
+        &:hover {
+            color: #333;
+            transition: 0.5s;
+        }
+    }
+}
+
+.card_container {
+    padding-top: 1%;
+
+    .link {
+        text-decoration: none;
+    }
+
+    .card {
+        margin: auto;
+        margin-top: 2%;
+
+        h1 {
+            text-align: center;
+            font-size: 17px;
+            padding-top: 10px;
+
+            span {
+                font-size: 15px;
+                padding-right: 8px;
+                font-weight: lighter;
+                color: #8E9194;
+            }
+        }
+
+        .card_content {
+
+            .title {
+                font-weight: bold;
+                color: #333;
+                font-size: 17px;
+            }
+
+            .body {
+                padding-top: 10px;
+                font-size: 16px;
+                color: #333;
+            }
+        }
+    }
+
+    .comments {
+        color: blue;
+        display: flex;
+        justify-content: end;
+        padding: 10px;
+        cursor: pointer;
+
+        &:hover {
+            color: red;
+        }
+    }
+}

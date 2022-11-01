@@ -1,0 +1,54 @@
+.card_container {
+    padding-top: 1%;
+    background-image: url(../../Images/bg_image.webp);
+    max-width: 100%;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    .card {
+        margin: auto;
+        margin-top: 2%;
+
+        h1 {
+            text-align: center;
+            font-size: 17px;
+            padding-top: 10px;
+
+            span {
+                font-size: 15px;
+                padding-right: 8px;
+                font-weight: lighter;
+                color: #8E9194;
+            }
+        }
+
+        .card_content {
+
+            .title {
+                font-weight: bold;
+                color: #333;
+                font-size: 17px;
+            }
+
+            .body {
+                padding-top: 10px;
+                font-size: 16px;
+                color: #333;
+            }
+        }
+    }
+
+    .comments {
+        color: blue;
+        display: flex;
+        justify-content: end;
+        padding: 10px;
+        cursor: pointer;
+
+        &:hover {
+            color: red;
+        }
+    }
+}
